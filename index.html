@@ -1,11 +1,36 @@
-<!DOCTYPE html>
-<html lang="fa">
-<head>
-  <meta charset="UTF-8">
-  <title>Redirecting...</title>
-  <meta http-equiv="refresh" content="0; url=https://eitaa.com/joinchat/50070493Cf020c0dd62">
-</head>
-<body>
-  <p>در حال انتقال به کانال...</p>
-</body>
-</html>
+<?php
+// ---------- تنظیمات ----------
+
+// توکن API ایتا یار
+$token = "bot213272:0f23a3c5-3fe6-4fbf-b3e5-42beca106048";
+
+// chat_id کانال یا username کانال (بدون @)
+$chat_id = "tanziir";
+
+// متن پیامی که می‌خوای ارسال بشه
+$text = "سلام 👋
+برای عضویت در کانال طنزیر روی لینک زیر کلیک کنید:
+https://eitaa.com/joinchat/50070493Cf020c0dd62";
+
+// ---------- ارسال پیام با API ----------
+$url = "https://eitaayar.ir/api/$token/sendMessage";
+$data = [
+    "chat_id" => $chat_id,
+    "text"    => $text
+];
+
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_POST, true);
+curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+
+$response = curl_exec($ch);
+curl_close($ch);
+
+// ---------- ریدایرکت کاربر به کانال ----------
+header("Location: https://eitaa.com/joinchat/50070493Cf020c0dd62");
+exit;
+?>
