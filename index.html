@@ -1,36 +1,163 @@
-<?php
-// ---------- تنظیمات ----------
-
-// توکن API ایتا یار
-$token = "bot213272:0f23a3c5-3fe6-4fbf-b3e5-42beca106048";
-
-// chat_id کانال یا username کانال (بدون @)
-$chat_id = "tanziir";
-
-// متن پیامی که می‌خوای ارسال بشه
-$text = "سلام 👋
-برای عضویت در کانال طنزیر روی لینک زیر کلیک کنید:
-https://eitaa.com/joinchat/50070493Cf020c0dd62";
-
-// ---------- ارسال پیام با API ----------
-$url = "https://eitaayar.ir/api/$token/sendMessage";
-$data = [
-    "chat_id" => $chat_id,
-    "text"    => $text
-];
-
-$ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, $url);
-curl_setopt($ch, CURLOPT_POST, true);
-curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
-curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-
-$response = curl_exec($ch);
-curl_close($ch);
-
-// ---------- ریدایرکت کاربر به کانال ----------
-header("Location: https://eitaa.com/joinchat/50070493Cf020c0dd62");
-exit;
-?>
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ربات جستجوی موسیقی | Music Search Bot</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+        
+        h1 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 2em;
+            text-align: center;
+        }
+        
+        .emoji {
+            font-size: 3em;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        p {
+            line-height: 1.8;
+            color: #333;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+        
+        .features {
+            background: #f7f7f7;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        .features ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .features li {
+            padding: 10px 0;
+            color: #555;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .features li:last-child {
+            border-bottom: none;
+        }
+        
+        .features li::before {
+            content: "✓ ";
+            color: #667eea;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+        
+        .cta {
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 15px 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
+        }
+        
+        .links {
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        .links a {
+            color: #667eea;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        
+        .links a:hover {
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px 20px;
+            }
+            
+            h1 {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="emoji">🎵</div>
+        <h1>ربات جستجوی موسیقی</h1>
+        
+        <p>
+            به ربات جستجوی موسیقی خوش آمدید! این ربات به شما کمک می‌کند تا به راحتی موسیقی مورد نظر خود را پیدا کنید.
+        </p>
+        
+        <div class="features">
+            <ul>
+                <li>جستجوی موسیقی در کانال تلگرام</li>
+                <li>جستجوی موسیقی در اینترنت (در صورت عدم وجود در کانال)</li>
+                <li>دانلود و ارسال فوری موسیقی</li>
+                <li>رابط کاربری فارسی</li>
+                <li>استفاده آسان و سریع</li>
+            </ul>
+        </div>
+        
+        <p>
+            برای استفاده از ربات، کافی است در تلگرام ربات را پیدا کرده و با ارسال نام آهنگ یا خواننده، موسیقی مورد نظر خود را دریافت کنید.
+        </p>
+        
+        <div class="cta">
+            <a href="https://t.me/tanziir" class="btn">ورود به کانال</a>
+        </div>
+        
+        <div class="links">
+            <a href="https://github.com/shehneh/tanziir-join-miniapp">GitHub</a>
+            <a href="https://github.com/shehneh/tanziir-join-miniapp/blob/main/README.md">مستندات</a>
+            <a href="https://github.com/shehneh/tanziir-join-miniapp/blob/main/QUICKSTART.md">راهنمای سریع</a>
+        </div>
+    </div>
+</body>
+</html>
