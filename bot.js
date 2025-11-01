@@ -204,10 +204,10 @@ async function sendInternetMusicResults(chatId, results) {
         message += `\n⬇️ در حال دانلود پیش‌نمایش...`;
         
         // Download and send audio preview
-        const audioResponse = await downloadAudio(firstResult.previewUrl);
+        const audioStream = await downloadAudio(firstResult.previewUrl);
         
-        // Send as audio
-        await bot.sendAudio(chatId, audioResponse.data, {
+        // Send as audio (stream is used directly)
+        await bot.sendAudio(chatId, audioStream, {
           caption: `🎵 ${firstResult.title} - ${firstResult.artist}\n\n⚠️ این فایل پیش‌نمایش 30 ثانیه‌ای است.\nبرای دانلود کامل از منابع قانونی استفاده کنید.`
         });
         
