@@ -9,13 +9,16 @@ if (!config.botToken) {
   console.log('   ❌ BOT_TOKEN is missing (this is expected in testing)');
   console.log('      Set BOT_TOKEN in .env file before running the bot');
 } else {
-  console.log('   ✅ BOT_TOKEN is set');
+  // Mask token for security - only show first and last 4 characters
+  const maskedToken = config.botToken.substring(0, 4) + '...' + config.botToken.substring(config.botToken.length - 4);
+  console.log(`   ✅ BOT_TOKEN is set (${maskedToken})`);
 }
 
 console.log(`   ✅ Music channel: ${config.musicChannel}`);
 
 if (config.adminUserId) {
-  console.log(`   ✅ Admin user ID: ${config.adminUserId}`);
+  // Don't log the actual ID for security reasons
+  console.log('   ✅ Admin user ID is configured');
 } else {
   console.log('   ℹ️  Admin user ID not set (optional)');
 }
